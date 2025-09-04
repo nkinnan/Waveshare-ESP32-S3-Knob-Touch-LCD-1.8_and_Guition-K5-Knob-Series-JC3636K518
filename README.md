@@ -28,3 +28,4 @@ http://pan.jczn1688.com/1/HMI%20display (file: JC3636K518CN_knob_EN.zip)
 
 direct link: http://pan.jczn1688.com/directlink/1/HMI%20display/JC3636K518CN_knob_EN.zip or http://pan.jczn1688.com/s/54f682
 
+Ongoing Discord discussion: https://discord.com/channels/429907082951524364/1411734762002845789
