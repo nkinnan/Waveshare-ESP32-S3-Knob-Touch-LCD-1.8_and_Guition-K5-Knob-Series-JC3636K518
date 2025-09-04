@@ -28,7 +28,7 @@ http://pan.jczn1688.com/1/HMI%20display (file: JC3636K518CN_knob_EN.zip)
 
 direct link: http://pan.jczn1688.com/directlink/1/HMI%20display/JC3636K518CN_knob_EN.zip or http://pan.jczn1688.com/s/54f682
 
-I'm unable to find the original source code for the Waveshare version, only the waveshare wiki which DOES have snippets showing how to interact with the hardware (but no full software stack).  The waveshare wiki also has a full schematic diagram, links to datasheets on the peripheral chips, what appears to be their shipping firmware (bin only) and other resources.  
+I'm unable to find the original source code for the Waveshare version, only the waveshare wiki which DOES have snippets showing how to interact with (most of) the hardware (but no full software stack).  The waveshare wiki also has a full schematic diagram, links to datasheets on the peripheral chips, what appears to be their shipping firmware (bin only) and other resources.  
 
 For some things like interacting with the secondary ESP which seems to be handling bluetooth in parallel with the main ESP, I think it's going to require digging into the JC3636K518 source code.  Which as far as I can tell is actually identical to the shipping Waveshare firmware.  I have no idea how that happened, I doubt they re-implemented it.  Perhaps there is a collaboration between the two companies?  If not, some serious corporate espionage or something is happening.
 
