@@ -42,6 +42,7 @@ misc:
 
 This device incorporates two different ESP chips:
 
+Guition K5:
 ```
 Connected to ESP32-S3 on COM4:
 Chip type:          ESP32-S3 (QFN56) (revision v0.2)
