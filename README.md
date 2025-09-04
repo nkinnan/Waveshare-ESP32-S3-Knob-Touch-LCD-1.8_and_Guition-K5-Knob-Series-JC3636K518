@@ -40,7 +40,22 @@ Ongoing Discord discussion: https://discord.com/channels/429907082951524364/1411
 
 misc: 
 
-Supposedly you can select which ESP to flash over the USB-C connector by using a USB-A to USB-C cable and flipping its orientation.  If using a C-C cable, which ESP you're talking to will depend on which signal line pair the host-side mux selects.
+This device incorporates two different ESP chips:
+
+```
+Connected to ESP32-S3 on COM4:
+Chip type:          ESP32-S3 (QFN56) (revision v0.2)
+Features:           Wi-Fi, BT 5 (LE), Dual Core + LP Core, 240MHz, Embedded PSRAM 8MB (AP_3v3)
+Crystal frequency:  40MHz
+USB mode:           USB-Serial/JTAG
+
+Connected to ESP32 on COM5:
+Chip type:          ESP32-U4WDH (revision v3.1)
+Features:           Wi-Fi, BT, Dual Core + LP Core, 240MHz, Embedded Flash, Vref calibration in eFuse, Coding Scheme None
+Crystal frequency:  40MHz
+```
+
+You can select which ESP to flash over the USB-C connector by using a USB-A to USB-C cable and flipping its orientation.  If using a C-C cable, which ESP you're talking to will depend on which signal line pair the host-side mux selects.
 
 A neat free LED lighting control UI: https://www.youtube.com/watch?v=8pHF0OAG2TI
 
