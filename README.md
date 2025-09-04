@@ -34,11 +34,13 @@ direct link: http://pan.jczn1688.com/directlink/1/HMI%20display/JC3636K518CN_kno
 
 I'm unable to find the original source code for the Waveshare version, only the waveshare wiki which DOES have snippets showing how to interact with (most of) the hardware (but no full software stack).  The waveshare wiki also has a full schematic diagram, links to datasheets on the peripheral chips, what appears to be their shipping firmware (bin only) and other resources.  
 
-For some things like interacting with the secondary ESP which I'm guessing is handling bluetooth in parallel with the main ESP, I think it's going to require digging into the JC3636K518 source code.  Which as far as I can tell is actually identical to the shipping Waveshare firmware.  I have no idea how that happened, I doubt they re-implemented it.  Perhaps there is a collaboration between the two companies?  If not, some serious corporate espionage or something is happening.
+The JC3636K518 source code seems to be identical to the shipping Waveshare firmware (or at least an older version of it, I've seen youtube videos showing an identical UI).  I have no idea how that happened, I doubt they re-implemented it.  Perhaps there is a collaboration between the two companies?  If not, some corporate espionage or something is happening.
 
 Ongoing Discord discussion: https://discord.com/channels/429907082951524364/1411734762002845789
 
 misc: 
+
+Supposedly you can select which ESP to flash over the USB-C connector by using a USB-A to USB-C cable and flipping its orientation.  If using a C-C cable, which ESP you're talking to will depend on which signal line pair the host-side mux selects.
 
 A neat free LED lighting control UI: https://www.youtube.com/watch?v=8pHF0OAG2TI
 
