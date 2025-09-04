@@ -12,7 +12,9 @@ Waveshare wiki (WITH EXAMPLE CODE for both Arduino and ESP-IDF frameworks to int
 Amazon purchase link (no referral code included, this is just a place you can get it): https://www.amazon.com/dp/B0FDL4FJ13
 * Note: I think this version has no battery included, but it should be possible to add one if you don't mind removing some screws.
 
-Guition product page (there are multiple aliexpress pages but most are dead): https://www.surenoo.com/collections/258656/products/23666971
+Guition official store page: https://www.aliexpress.us/item/3256808637654546.html
+
+Alternative product listing: https://www.surenoo.com/collections/258656/products/23666971
 
 Amazon purchase link (no referral code included, this is just a place you can get it): https://www.amazon.com/dp/B0F8QWF7N3
 
