@@ -26,10 +26,6 @@ ESPHome discussion which got some things at least partially working: https://git
 
 Home Assistant discussion: https://community.home-assistant.io/t/display-knob/905249
 
-Not the same device, but close, and may be helpful: https://community.home-assistant.io/t/waveshare-esp32-s3-lcd-1-85/833702/6
-
-Possibly a relevant discussion about PlatformIO board definition: https://community.platformio.org/t/help-adding-board-for-waveshare-esp32-s3-with-round-1-85-display/46062/3
-
 This appears to be the original source code for the software shipped on the Guition JC3636K518: 
 
 http://pan.jczn1688.com/1/HMI%20display (file: JC3636K518CN_knob_EN.zip)
@@ -42,4 +38,11 @@ For some things like interacting with the secondary ESP which I'm guessing is ha
 
 Ongoing Discord discussion: https://discord.com/channels/429907082951524364/1411734762002845789
 
+misc: 
+
 A neat free LED lighting control UI: https://www.youtube.com/watch?v=8pHF0OAG2TI
+
+Not the same device, but close, and may be helpful: https://community.home-assistant.io/t/waveshare-esp32-s3-lcd-1-85/833702/6
+
+Possibly a relevant discussion about PlatformIO board definition: https://community.platformio.org/t/help-adding-board-for-waveshare-esp32-s3-with-round-1-85-display/46062/3
+
