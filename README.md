@@ -22,7 +22,7 @@ ESPHome discussion which got some things at least partially working: https://git
 
 Home Assistant discussion: https://community.home-assistant.io/t/display-knob/905249
 
-This appears to be the original source code for the software shipped on the Guition JC3636K518: 
+This appears to be the original source code for the software shipped on the Guition JC3636K518 (I'm unable to find the original source code for the Waveshare version): 
 
 http://pan.jczn1688.com/1/HMI%20display (file: JC3636K518CN_knob_EN.zip)
 
