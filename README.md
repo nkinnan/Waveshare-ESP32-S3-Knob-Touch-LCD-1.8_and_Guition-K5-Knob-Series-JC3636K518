@@ -26,7 +26,7 @@ Home Assistant discussion: https://community.home-assistant.io/t/display-knob/90
 
 Not the same device, but close, and may be helpful: https://community.home-assistant.io/t/waveshare-esp32-s3-lcd-1-85/833702/6
 
-Possibly a relevant PlatformIO board definition? https://github.com/pioarduino/platform-espressif32/blob/main/boards/waveshare_esp32s3_touch_lcd_128.json
+Possibly a relevant discussion about PlatformIO board definition: https://community.platformio.org/t/help-adding-board-for-waveshare-esp32-s3-with-round-1-85-display/46062/3
 
 This appears to be the original source code for the software shipped on the Guition JC3636K518: 
 
