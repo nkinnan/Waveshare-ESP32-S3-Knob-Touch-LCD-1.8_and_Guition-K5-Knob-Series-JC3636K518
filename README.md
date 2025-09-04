@@ -1,4 +1,4 @@
-# Waveshare ESP32 S3 Knob Touch LCD 1.8 / Guition K5 Knob Series JC3636K518
+# ESPHome config for: Waveshare ESP32 S3 Knob Touch LCD 1.8 / Guition K5 Knob Series JC3636K518
 Fully functional with all peripherals (goal) ESPHome config that works for both the Waveshare ESP32 S3 Knob Touch LCD 1.8 and its clone the Guition K5 Knob Series JC3636K518.  
 
 Note that there are several similar products out there, this is the one with the rotary knob surrounding the screen, an optional internal battery, and a fully enclosed back (no exposed PCB).  If you have one of the other versions, they may use similar or the same hardware so some of this may still be useful to you, but I wanted the rotary knob so that's what I've focused on.
