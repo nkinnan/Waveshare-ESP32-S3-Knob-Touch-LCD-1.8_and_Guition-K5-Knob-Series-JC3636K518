@@ -9,6 +9,8 @@ Waveshare product page: https://www.waveshare.com/esp32-s3-knob-touch-lcd-1.8.ht
 
 Waveshare wiki (WITH EXAMPLE CODE for both Arduino and ESP-IDF frameworks to interact with most of the peripherals): https://www.waveshare.com/wiki/ESP32-S3-Knob-Touch-LCD-1.8
 
+Waveshare official store: https://www.aliexpress.com/i/3256809117538849.html
+
 Amazon purchase link (no referral code included, this is just a place you can get it): https://www.amazon.com/dp/B0FDL4FJ13
 * Note: I think this version has no battery included, but it should be possible to add one if you don't mind removing some screws.
 
