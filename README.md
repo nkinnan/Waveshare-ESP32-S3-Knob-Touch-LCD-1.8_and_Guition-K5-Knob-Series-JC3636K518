@@ -41,3 +41,5 @@ I'm unable to find the original source code for the Waveshare version, only the 
 For some things like interacting with the secondary ESP which I'm guessing is handling bluetooth in parallel with the main ESP, I think it's going to require digging into the JC3636K518 source code.  Which as far as I can tell is actually identical to the shipping Waveshare firmware.  I have no idea how that happened, I doubt they re-implemented it.  Perhaps there is a collaboration between the two companies?  If not, some serious corporate espionage or something is happening.
 
 Ongoing Discord discussion: https://discord.com/channels/429907082951524364/1411734762002845789
+
+A neat free LED lighting control UI: https://www.youtube.com/watch?v=8pHF0OAG2TI
