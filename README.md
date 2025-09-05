@@ -139,14 +139,14 @@ if (Test-Path "flash.bin") {
 # concatenate all the individual chunks into a single bin file
 for ($part_number = 0; $part_number -lt $read_count; $part_number++) {
     $part_filename = 'binparts\\{0:D8}.bin' -f $part_number
-    $part = Get-Content -Path $part_filename -Raw
-    Add-Content -Path flash.bin -NoNewline -Value $part
+    $part = Get-Content -Path $part_filename -Raw -Encoding Byte
+    Add-Content -Path flash.bin -NoNewline -Encoding Byte -Value $part
 }
 
 # delete the directory containing all the chunks
-if (Test-Path "binparts") {
-    ri -Force "binparts" -Recurse
-}
+#if (Test-Path "binparts") {
+#    ri -Force "binparts" -Recurse
+#}
 
 Write-Output "Complete, flash.bin available in current directory, temporary files cleaned."
 ```
