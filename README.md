@@ -119,7 +119,7 @@ if (Test-Path "flash.bin") {
     ri -Force "flash.bin"
 }
 
-1..$read_count | ForEach-Object {
+0..($read_count - 1) | ForEach-Object {
 
     $part_filename = 'binparts\\{0:D8}.bin' -f $_
     $part = Get-Content -Path $part_filename
