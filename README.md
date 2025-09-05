@@ -144,9 +144,9 @@ for ($part_number = 0; $part_number -lt $read_count; $part_number++) {
 }
 
 # delete the directory containing all the chunks
-#if (Test-Path "binparts") {
-#    ri -Force "binparts" -Recurse
-#}
+if (Test-Path "binparts") {
+    ri -Force "binparts" -Recurse
+}
 
 Write-Output "Complete, flash.bin available in current directory, temporary files cleaned."
 ```
