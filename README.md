@@ -56,7 +56,84 @@ Features:           Wi-Fi, BT, Dual Core + LP Core, 240MHz, Embedded Flash, Vref
 Crystal frequency:  40MHz
 ```
 
-You can select which ESP to flash over the USB-C connector by using a USB-A to USB-C cable and flipping its orientation.  If using a C-C cable, which ESP you're talking to will depend on which signal line pair the host-side mux selects.
+You can select which ESP to flash over the USB-C connector by using a USB-A to USB-C cable and flipping its orientation.  If using a C-C cable, which ESP you're talking to will depend on which signal line pair the host-side mux selects.  
+
+For the Guition clone, the secondary ESP32 can have its flash read out without issue using esptool, but for the primary S3 I've had to use a retry script (converted from bash to powershell based on a script by pzich):
+
+```
+#!/usr/bin/env pwsh
+
+$flash_size = 1024*1024*16
+$read_size = 4096
+
+$read_size_hex = '{0:X8}' -f $read_size # 8-digit uppercase hex with zero padding
+$read_count = $flash_size / $read_size
+
+$current_read = 0
+$total_retries = 0
+
+md -Force "binparts" >$null
+
+# Run initial flash-id command
+esptool -b 115200 --after no-reset-stub flash-id
+
+while ($true) {
+    if ($current_read -ge $read_count) {
+        break
+    }
+
+    $current_filename = 'binparts\\{0:D8}.bin' -f $current_read # zero-padded 8-digit decimal filename
+
+    if (Test-Path $current_filename) {
+        Write-Host "Skipping $current_read..." -BackgroundColor Yellow
+        $current_read++
+        continue
+    }
+
+    $current_read_offset_hex = '{0:X8}' -f ($current_read * $read_size) # 8-digit uppercase hex with zero padding
+    Write-Host "Reading chunk $current_read at $current_read_offset_hex..." -BackgroundColor Magenta
+
+    $current_retries = 0
+    while ($true) {
+        esptool -b 115200 --before no-reset --after no-reset-stub read-flash "0x${current_read_offset_hex}" "0x${read_size_hex}" $current_filename
+        
+        if($LastExitCode -ne 0) {
+            $total_retries++
+            $current_retries++
+            Write-Host "Retrying read $current_read at $current_read_offset_hex, attempt $current_retries..." -BackgroundColor Red
+            continue
+        }
+
+        break  # success, exit retry loop
+    }
+
+    $current_read++
+}
+
+Write-Host "DONE" -BackgroundColor Green
+Write-Output "Retries: $total_retries"
+
+Write-Output "Concatenating files..."
+
+if (Test-Path "flash.bin") {
+    ri -Force "flash.bin"
+}
+
+1..$read_count | ForEach-Object {
+
+    $part_filename = 'binparts\\{0:D8}.bin' -f $_
+    $part = Get-Content -Path $part_filename
+    Add-Content -Path flash.bin -Value $part
+}
+
+if (Test-Path "binparts") {
+    ri -Force "binparts" -Recurse
+}
+
+Write-Output "Complete, flash.bin available in current directory, temporary files cleaned."
+```
+
+I haven't tried writing them yet but hopefully the same won't be needed to *write* the flash on the primary S3 as well...
 
 A neat free LED lighting control UI: https://www.youtube.com/watch?v=8pHF0OAG2TI
 
