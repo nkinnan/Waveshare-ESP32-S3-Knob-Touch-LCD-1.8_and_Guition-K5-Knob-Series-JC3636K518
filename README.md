@@ -60,7 +60,7 @@ You can select which ESP to flash over the USB-C connector by using a USB-A to U
 
 For the Guition clone, the secondary ESP32 can have its flash read out without issue using esptool, but for the primary S3 I've had to use a retry script (converted from bash to powershell based on a script by pzich).  Make sure to put it into boot mode since when a download fails while in normal run mode, that will cause a hardware reset (I have no idea what is causing any of this, it makes no sense that 4K reads always work but larger reads fail, and it's not my usb port or cable or a dodgy connection).
 
-```
+```ps
 #!/usr/bin/env pwsh
 
 $ErrorActionPreference = "Stop" # if something goes wrong, bail
