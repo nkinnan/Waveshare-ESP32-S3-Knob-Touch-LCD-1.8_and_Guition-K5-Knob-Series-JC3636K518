@@ -63,18 +63,21 @@ For the Guition clone, the secondary ESP32 can have its flash read out without i
 ```
 #!/usr/bin/env pwsh
 
+$ErrorActionPreference = "Stop" # if something goes wrong, bail
+$PSNativeCommandUseErrorActionPreference = $false # unless it's esptool, it can return non-zero exit and we handle that manually
+
+# Configure this for your chip
 $flash_size = 1024*1024*16
 $read_size = 4096
 
 $read_size_hex = '{0:X8}' -f $read_size # 8-digit uppercase hex with zero padding
 $read_count = $flash_size / $read_size
-
 $current_read = 0
 $total_retries = 0
 
 md -Force "binparts" >$null
 
-# Run initial flash-id command
+# Run initial flash-id command, technically we could read the output and set $flash_size that way but it's not worth the bother
 esptool -b 115200 --after no-reset-stub flash-id
 
 while ($true) {
@@ -104,7 +107,7 @@ while ($true) {
             continue
         }
 
-        break  # success, exit retry loop
+        break
     }
 
     $current_read++
