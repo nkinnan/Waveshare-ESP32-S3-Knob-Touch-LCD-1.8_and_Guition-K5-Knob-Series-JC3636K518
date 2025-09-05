@@ -84,6 +84,7 @@ $read_count = $flash_size / $read_size
 $current_read = 0
 $total_retries = 0
 
+# make a subdirectory to contain all the individual chunks
 md -Force "binparts" >$null
 
 # Run initial flash-id command, technically we could read the output and set $flash_size that way but it's not worth the bother
@@ -96,6 +97,7 @@ while ($true) {
 
     $current_filename = 'binparts\\{0:D8}.bin' -f $current_read # zero-padded 8-digit decimal filename
 
+    # if resuming, skip over already downloaded chunks
     if (Test-Path $current_filename) {
         Write-Host "Skipping $current_read..." -BackgroundColor Yellow
         $current_read++
@@ -107,8 +109,10 @@ while ($true) {
 
     $current_retries = 0
     while ($true) {
+        # read the next chunk
         esptool -b 115200 --before no-reset --after no-reset-stub read-flash "0x${current_read_offset_hex}" "0x${read_size_hex}" $current_filename
         
+        # do retries in case of esptool failure
         if($LastExitCode -ne 0) {
             $total_retries++
             $current_retries++
@@ -116,6 +120,7 @@ while ($true) {
             continue
         }
 
+        # successfully read chunk
         break
     }
 
@@ -126,21 +131,22 @@ Write-Host "DONE" -BackgroundColor Green
 Write-Output "Retries: $total_retries"
 Write-Output "Concatenating files..."
 
+# delete flash.bin if it exists
 if (Test-Path "flash.bin") {
     ri -Force "flash.bin"
 }
 
-$part_count = 0
-0..($read_count - 1) | ForEach-Object {
-    $part_count++
-    $part_filename = 'binparts\\{0:D8}.bin' -f $_
-    $part = Get-Content -Path $part_filename -AsByteStream -Raw
-    Add-Content -Path flash.bin -AsByteStream -NoNewline -Value $part
+# concatenate all the individual chunks into a single bin file
+for ($part_number = 0; $part_number -lt $read_count; $part_number++) {
+    $part_filename = 'binparts\\{0:D8}.bin' -f $part_number
+    $part = Get-Content -Path $part_filename -Raw
+    Add-Content -Path flash.bin -NoNewline -Value $part
 }
 
-#if (Test-Path "binparts") {
-#    ri -Force "binparts" -Recurse
-#}
+# delete the directory containing all the chunks
+if (Test-Path "binparts") {
+    ri -Force "binparts" -Recurse
+}
 
 Write-Output "Complete, flash.bin available in current directory, temporary files cleaned."
 ```
