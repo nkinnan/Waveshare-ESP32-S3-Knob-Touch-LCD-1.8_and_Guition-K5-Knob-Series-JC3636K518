@@ -66,9 +66,18 @@ For the Guition clone, the secondary ESP32 can have its flash read out without i
 $ErrorActionPreference = "Stop" # if something goes wrong, bail
 $PSNativeCommandUseErrorActionPreference = $false # unless it's esptool, it can return non-zero exit and we handle that manually
 
-# Configure this for your chip
+# Configure this for your chip and desired read size
 $flash_size = 1024*1024*16
 $read_size = 4096
+
+if($flash_size % (1024 * 1024) -ne 0) {
+    Write-Output "Incorrect parameters, flash_size is not a multiple of 1MB..."
+    exit
+}
+if($read_size % 4096 -ne 0) {
+    Write-Output "Incorrect parameters, read_size is not a multiple of 4096..."
+    exit
+}
 
 $read_size_hex = '{0:X8}' -f $read_size # 8-digit uppercase hex with zero padding
 $read_count = $flash_size / $read_size
@@ -115,23 +124,23 @@ while ($true) {
 
 Write-Host "DONE" -BackgroundColor Green
 Write-Output "Retries: $total_retries"
-
 Write-Output "Concatenating files..."
 
 if (Test-Path "flash.bin") {
     ri -Force "flash.bin"
 }
 
+$part_count = 0
 0..($read_count - 1) | ForEach-Object {
-
+    $part_count++
     $part_filename = 'binparts\\{0:D8}.bin' -f $_
-    $part = Get-Content -Path $part_filename
-    Add-Content -Path flash.bin -Value $part
+    $part = Get-Content -Path $part_filename -AsByteStream -Raw
+    Add-Content -Path flash.bin -AsByteStream -NoNewline -Value $part
 }
 
-if (Test-Path "binparts") {
-    ri -Force "binparts" -Recurse
-}
+#if (Test-Path "binparts") {
+#    ri -Force "binparts" -Recurse
+#}
 
 Write-Output "Complete, flash.bin available in current directory, temporary files cleaned."
 ```
